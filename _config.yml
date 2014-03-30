@@ -1,5 +1,9 @@
-name: Your New Jekyll Site
-markdown: redcarpet
+auto: true
+
+markdown: rdiscount
 pygments: true
-baseurl: /
+paginate: 8
+permalink: /:title
+
+feed: /atom.xml
 encoding: utf-8

@@ -1,0 +1,99 @@
+<h1>C Knowledge:线性表</h1>
+
+<blockquote><p>线性表是一种逻辑结构</p>
+
+<p>顺序表和链表是指存储结构，属于不同层面的概念</p></blockquote>
+
+<h2>顺序表</h2>
+
+<ul>
+<li>顺序表：有一定维护数据的数组，最主要特点：随机存储</li>
+<li><p>数据结构：</p>
+
+<pre><code>  typedef struct{
+          ElemType *data;
+          int MaxSize,length;
+      }SeqList;
+</code></pre></li>
+<li><p>插入:</p>
+
+<pre><code>  bool ListInsert(SeqList &amp;L,int i,ElemType e)
+  {
+  if(i&lt;1||i&gt;L.length)
+  {
+      return false;
+  }
+  if(L.length&gt;=L.MaxSize)
+  {
+      return false;
+  }
+
+  for(int j=L.length;j&gt;=i;j--)
+  {
+      L.data[j]=L.data[j-1];
+  }
+  L.data[i-1]=e;//i-1位置插入
+  L.length++;
+  return true;
+  }
+</code></pre></li>
+</ul>
+
+
+<h2>单链表</h2>
+
+<ul>
+<li><p>数据结构</p>
+
+<pre><code>      typedef struct LNode{
+          ElemType data;
+          struct LNode *next;
+      }LNode,*LinkList;
+</code></pre></li>
+<li>用头指针L标示单链表，L=NULL时表示空</li>
+<li><p>头插入创建链表</p>
+
+<pre><code>      LinkList CreateList(LinkList &amp;L)
+      {
+          L=(LinkList)malloc(sizeof(LNode));
+          L-&gt;next=NULL;
+
+          int x;
+          scanf("%d",&amp;x);
+          while(x!=9999)
+          {
+              LNode *s=(LNode *)malloc(sizeof(LNode));
+              s-&gt;data=x;
+              s-&gt;next=L-&gt;next;
+              L-&gt;next=s;
+
+              scanf("%d",&amp;x);
+          }
+          return L;
+      }
+</code></pre></li>
+</ul>
+
+
+<h2>双链表</h2>
+
+<ul>
+<li><p>数据结构</p>
+
+<pre><code>  typedef struct DNode{
+      ElemType data;
+      struct DNode *prior,*next;
+      }DNode,*DLinklist;
+</code></pre></li>
+<li><p>插入（s插入到p后）</p>
+
+<pre><code>  bool Insert(DNode *s,DNode *p)
+  {
+      s-&gt;next=p-&gt;next;
+      p-&gt;next-&gt;prior=s;
+      s-&gt;prior=p;
+      p-&gt;next=s;
+  }
+</code></pre></li>
+</ul>
+

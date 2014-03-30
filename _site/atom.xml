@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+   <title></title>
+   <link href="/atom.xml" rel="self" type="application/atom+xml"/>
+   <link href="" rel="alternate" type="text/html" />
+   <updated>2014-03-30T18:00:10+08:00</updated>
+   <id></id>
+   <author>
+     <name></name>
+     <email></email>
+   </author>
+
+   
+   <entry>
+     <title>C Knowledge point</title>
+     <link href="http://beiyuu.com/C-Knowledge-point"/>
+     <updated>2014-03-30T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/C-Knowledge-point</id>
+     <content type="html">&lt;h1&gt;C Knowledge:指针&lt;/h1&gt;
+
+&lt;h3&gt;1.字符串常量&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;它的值是个指针常量&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  &quot;xyz&quot;+1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;表示指向&quot;xyz&quot;的指针值加1，即指向y&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;blockquote&gt;&lt;p&gt;用处：&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;    void mystery(int n)
+    {           
+        printf(&quot;%s\n&quot;,&quot;**********&quot;+10-n);
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;打印n个“*”，n在0-10之间&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h3&gt;2.指针传递&lt;/h3&gt;
+
+&lt;blockquote&gt;&lt;p&gt;问题描述：想获得一个数组长度，得到的答案是：&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;sizeof(s) / sizeof(int)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;实验发现不行，原因是：当数组作为函数的参数进行传递时，该数组自动退化为同类型的指针。&lt;/p&gt;
+
+&lt;p&gt;所以当把数组传到函数里调用这个方法结果为1.&lt;/p&gt;&lt;/blockquote&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>C Knowledge Linearlist</title>
+     <link href="http://beiyuu.com/C-Knowledge-linearlist"/>
+     <updated>2014-03-30T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/C-Knowledge-linearlist</id>
+     <content type="html">&lt;h1&gt;C Knowledge:线性表&lt;/h1&gt;
+
+&lt;blockquote&gt;&lt;p&gt;线性表是一种逻辑结构&lt;/p&gt;
+
+&lt;p&gt;顺序表和链表是指存储结构，属于不同层面的概念&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h2&gt;顺序表&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;顺序表：有一定维护数据的数组，最主要特点：随机存储&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;数据结构：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  typedef struct{
+          ElemType *data;
+          int MaxSize,length;
+      }SeqList;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;插入:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  bool ListInsert(SeqList &amp;amp;L,int i,ElemType e)
+  {
+  if(i&amp;lt;1||i&amp;gt;L.length)
+  {
+      return false;
+  }
+  if(L.length&amp;gt;=L.MaxSize)
+  {
+      return false;
+  }
+
+  for(int j=L.length;j&amp;gt;=i;j--)
+  {
+      L.data[j]=L.data[j-1];
+  }
+  L.data[i-1]=e;//i-1位置插入
+  L.length++;
+  return true;
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;单链表&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;数据结构&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;      typedef struct LNode{
+          ElemType data;
+          struct LNode *next;
+      }LNode,*LinkList;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;用头指针L标示单链表，L=NULL时表示空&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;头插入创建链表&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;      LinkList CreateList(LinkList &amp;amp;L)
+      {
+          L=(LinkList)malloc(sizeof(LNode));
+          L-&amp;gt;next=NULL;
+
+          int x;
+          scanf(&quot;%d&quot;,&amp;amp;x);
+          while(x!=9999)
+          {
+              LNode *s=(LNode *)malloc(sizeof(LNode));
+              s-&amp;gt;data=x;
+              s-&amp;gt;next=L-&amp;gt;next;
+              L-&amp;gt;next=s;
+
+              scanf(&quot;%d&quot;,&amp;amp;x);
+          }
+          return L;
+      }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;双链表&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;数据结构&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  typedef struct DNode{
+      ElemType data;
+      struct DNode *prior,*next;
+      }DNode,*DLinklist;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;插入（s插入到p后）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  bool Insert(DNode *s,DNode *p)
+  {
+      s-&amp;gt;next=p-&amp;gt;next;
+      p-&amp;gt;next-&amp;gt;prior=s;
+      s-&amp;gt;prior=p;
+      p-&amp;gt;next=s;
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+   </entry>
+   
+   <entry>
+     <title>C Knowledge char</title>
+     <link href="http://beiyuu.com/C-Knowledge-arraylist"/>
+     <updated>2014-03-30T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/C-Knowledge-arraylist</id>
+     <content type="html">&lt;h1&gt;C Knowledge:字符串&lt;/h1&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;strlen()返回的是无符号,所以：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  if(strlen(x)&amp;gt;=strlen(y))  //是对的
+  if(strlen(x)-strlen(y)&amp;gt;=0)  //结果永远为正
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;strcpy需要保证目标数组足够大，否则会覆盖数组后面的内存&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  char message[]=&quot;Original message&quot;
+  strcpy(message,&quot;A different message&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;strtok&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;定义：作用于字符串s，以包含在delim中的字符为分界符，将s切分成一个个子串；
+如果，s为空值NULL，则函数保存的指针SAVE_PTR在下一次调用中将作为起始位置。&lt;/li&gt;
+&lt;li&gt;对原作用域做了修改，在找到的第一个位置修改成&#39;\0&#39;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;以某个分隔符分割字符串，标准写法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  static char whitespace[]=&quot; \t\f\r\v\n&quot;;
+  char *token;
+  token=strtok(line,whitespace);
+  for(;token!=NULL;token=strtok(NULL,whitespace))
+  {
+      printf(&quot;Next is %s\n&quot;,token);
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;去掉重复字符串
+  strcpy(dup,dup+1)//dup为重复字符出现位置&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;br/&gt;
+&lt;img src=&quot;http://i9.topit.me/9/e8/9e/1153911952edc9ee89l.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>C Knowledge array</title>
+     <link href="http://beiyuu.com/C-Knowledge-array"/>
+     <updated>2014-03-30T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/C-Knowledge-array</id>
+     <content type="html">&lt;h1&gt;C Knowledge:数组&lt;/h1&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;ul&gt;
+&lt;li&gt;int b[4]&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&amp;#8194;&amp;#8194;&amp;#8194; b的类型就是
+&lt;em&gt;&quot;指向int的常量指针&quot;&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;与指针变量的区别是：不能修改常量值&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;编译器不检查下标（是否合法，是否越界）。因为代价太大了。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;效率上，下标&amp;lt;=指针&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;二维数组传参：&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;void func(int mat[][10])
+void func(int(*mat)[10])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;**mat是不对的，因为它表示指向指针的指针，而 int(&lt;/em&gt;mat)[10]表示一个指向有10个元素的数组的指针&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img3.douban.com/view/photo/raw/public/p2164194854.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>C Knowledge IO</title>
+     <link href="http://beiyuu.com/C-Knowledge-IO"/>
+     <updated>2014-03-30T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/C-Knowledge-IO</id>
+     <content type="html">&lt;h1&gt;C Knowledge: I/O&lt;/h1&gt;
+
+&lt;h3&gt;1.输入输出函数&lt;/h3&gt;
+
+&lt;blockquote&gt;&lt;p&gt;标准输入输出在ANSI C 库中，头文件：stdio.h，包含了I/O库所需要的声明&lt;/p&gt;
+
+&lt;p&gt;流分为两种：文本流（text）和二进制流&lt;/p&gt;
+
+&lt;p&gt;FILE包含于stdio.h,是一个用于访问流的数据结构&lt;/p&gt;
+
+&lt;p&gt;对于ANSI C程序，运行时系统必须提供三个流：标准输入，标准输出，标准错误，三个都是指向FILE的指针&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;2.perror提供向用户报告错误的简单方法&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;    FILE *input
+    input=fopen(&quot;data&quot;,&quot;r&quot;);
+    if(input==NULL)
+    {
+        perror(&quot;data&quot;);
+        exit(0);
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;输出：data:No such file or directory&lt;/p&gt;&lt;/blockquote&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>C Knowledge</title>
+     <link href="http://beiyuu.com/C-Knowledge"/>
+     <updated>2014-03-30T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/C-Knowledge</id>
+     <content type="html">&lt;h1&gt;C Knowledge&lt;/h1&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h3&gt;1.最大堆最小堆&lt;/h3&gt;
+
+&lt;blockquote&gt;&lt;p&gt;堆的用处在于最快的找到最大值，最小值&lt;/p&gt;
+
+&lt;p&gt;取走最大值并重新构造的时间复杂度为O(logn)，其他方法为O(n)。&lt;/p&gt;
+
+&lt;p&gt;主要用在调度算法中，比如优先级调度&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h3&gt;2.register&lt;/h3&gt;
+
+&lt;blockquote&gt;&lt;p&gt;register用于请求编译器&lt;em&gt;尽可能&lt;/em&gt;将变量存于CPU内部寄存器中，而不是通过内存寻址访问，而提高效率&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;register int *p1,*p2;
+for(p1=x,p2=y;p1&amp;lt;&amp;amp;x[SIZE];)
+{
+    *p1++=*p2++
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;这样执行操作会快的多&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;3.各种数据类型长度&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;size of int is:   4&lt;/li&gt;
+&lt;li&gt;size of char is:   1&lt;/li&gt;
+&lt;li&gt;size of short int is:   2&lt;/li&gt;
+&lt;li&gt;size of double is:   8&lt;/li&gt;
+&lt;li&gt;size of unsigned int is:   4&lt;/li&gt;
+&lt;li&gt;size of float is:   4&lt;/li&gt;
+&lt;li&gt;size of long double is:   8&lt;/li&gt;
+&lt;li&gt;size of long int is:   4&lt;/li&gt;
+&lt;li&gt;size of long int is:   4&lt;/li&gt;
+&lt;li&gt;size of unsigned char is:   1&lt;/li&gt;
+&lt;li&gt;size of signed char is:   1&lt;/li&gt;
+&lt;li&gt;size of unsigned long int is:   4&lt;/li&gt;
+&lt;li&gt;size of signed int is:   4&lt;/li&gt;
+&lt;li&gt;size of unsigned short int is:   2&lt;/li&gt;
+&lt;li&gt;size of signed short int is:   2&lt;/li&gt;
+&lt;li&gt;size of signed int is:   4&lt;/li&gt;
+&lt;li&gt;size of signed long int is:   4&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;4.宏的优势&lt;/h3&gt;
+
+&lt;blockquote&gt;&lt;p&gt;可以完成一些在不需要数据类型情况下的操作&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;#define MALLOC(n,type)\
+((type *)malloc((n)*sizeof(type)))
+
+#define MAX(a,b) ((a)&amp;gt;(b) ? (a) : (b))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;MAX可以对任何数据类型进行比较&lt;/p&gt;
+
+&lt;p&gt;宏的执行速度比函数快，因为省了调用与返回的开销&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;小知识&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;int能表示的最大，最小的数：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  static const int MAX=(int)((unsigned)~0&amp;gt;&amp;gt;1);
+  static const int MIN=-(int)((unsigned)~0&amp;gt;&amp;gt;1)-1;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;http://fa.topit.me/a/be/0a/11303328811bc0abeal.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</content>
+   </entry>
+   
+ 
+</feed>
