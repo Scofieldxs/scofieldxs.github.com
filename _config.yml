@@ -1,9 +1,5 @@
-auto: true
-
-markdown: rdiscount
+name: Flex
+markdown: redcarpet
 pygments: true
-paginate: 8
-permalink: /:title
-
-feed: /atom.xml
+markdown: rdiscount
 encoding: utf-8
