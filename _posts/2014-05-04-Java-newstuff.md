@@ -1,0 +1,30 @@
+---
+layout: post
+title: java 前沿
+cover: cover_1.jpg
+date:   2014-05-04 12:00:00
+categories: posts
+---
+<br/>
+<br/>
+
+Java 前沿
+===
+##Netty
++ Netty是基于JAVA NIO类库的_异步通信框架_
++ 网站需要拆分应用进行服务，因此需要RPC框架，Netty作为基础通信组件被RPC框架使用
+
+---
+
+##NIO
++ NEW IO(新输入/输出)
++ 传统I/O是针对字节流的操作，而NIO对数据块进行操作，更快
++ NIO核心：通道和缓冲区：
+	+ 通道：对流的模拟
+	+ 缓冲区：NIO中对数据操作都是用缓冲区处理：读数据从缓冲区读；写数据向缓冲区写。
++ NIO是非阻塞IO
+
+---
+
+##RPC
++ Remote Procedure Call Protocol（远程过程调用协议）
