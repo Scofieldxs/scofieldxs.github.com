@@ -22,7 +22,7 @@ java:spring
 
 + spring响应流程
 
-![image](../images/20130921205445062.jpg)
+![image](http://img.blog.csdn.net/20130921205445062?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQmFwbGU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
  	
 
 ##IoC
@@ -31,6 +31,7 @@ java:spring
 
 ##AOP
 ---
++ 为了分离业务逻辑和系统级服务（如审计和事务管理）
 + spring对bean对象的AOP处理有两种方式：
 	+ 有接口的类：JDKDynamicAopProxy
 	+ 普通类：CglibProxyFactory
