@@ -23,7 +23,8 @@ java:容器类
 ###List
 + ArrayList:基于数组，因此随机访问较好
 + LinkedList：基于链表，因此插入删除较快
-
++ Vector非常类似ArrayList，但是Vector是同步的。使用了synchronized方法（线程安全），通常性能上较ArrayList差
+	+ Stack继承自Vector，当做堆栈使用。
 ###Set
 + 不允许保存重复对象，因此常被用来测试一个对象是否属于一个类
 + HashSet:底层使用散列函数实现，适用快速查找。
