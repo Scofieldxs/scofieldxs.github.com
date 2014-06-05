@@ -36,3 +36,14 @@ java:容器类
 + HashMap:插入和查询开销固定，性能好。
 + LinkedHashMap：链表结构
 + TreeMap：基于红黑树的实现
+
+###Collection vs Collections
++ Collection是集合类的一个顶级接口
++ Collections是一个工具类，提供一系列的静态方法，用于排序，搜索，不能实例化。
+
+			List list=new ArrayList();
+			Collections.sort(list);
+
+###HashMap vs HashTable
++ HashMap是Hashtable轻量级实现，非线程安全，允许空，
++ Hashtable方法是Synchronize的。

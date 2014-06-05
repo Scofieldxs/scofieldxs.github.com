@@ -2,7 +2,7 @@
 layout: post
 title: java常用操作
 cover: cover_5.jpg
-date:   2014-05-12 12:00:00
+date:   2014-06-05 12:00:00
 categories: posts
 ---
 <br/>
