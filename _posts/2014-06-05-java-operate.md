@@ -25,3 +25,10 @@ categories: posts
 
 		int as=1;
 		String string=String.valueOf(as);
+
+####数组 list转换
++ array转list
+		ArrayList<String> list=new ArrayList<String>(Arrays.asList(strArray));
++ list转array
+		arrayList.toArray(stringArray);
+
