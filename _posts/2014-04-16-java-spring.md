@@ -39,7 +39,11 @@ java:spring
 
 ##Servlet
 ---
-+ servlet是对http协议做面向对象的封装
+
++ Servlet是运行在服务器端的小应用程序，是接收网络服务的请求和产生响应的一种方式。
++ servlet的功能：接受http请求，产生动态http响应。
+ 
++ spring里面：servlet是对http协议做面向对象的封装
 	+ HttpServletRequest :对应http请求，通过它可以获取请求相关	信息，如url,cookie,请求参数
 	+ HttpServletResponse：对应http回应
 
