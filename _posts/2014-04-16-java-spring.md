@@ -26,11 +26,61 @@ java:spring
  	
 
 ##IoC
+
 ---
+
 把传统上由程序代码直接操控的对象调用权交给容器，通过容器实现对象的装配和管理
 
+所谓的“控制反转”概念就是对组件对象控制权的转移，从程序代码本身转移到了外部容器。
+
+###依赖注入
+依赖注入是IoC的一种实现。
+含义：在运行的时候才产生类之间的依赖关系，把这种依赖的建立时间推后了，从编译器推迟到运行时。
+依赖注入方式:
+
+1.Set注入（spring里的方式）
+
+	public class SpringAction {
+		private SpringDao springDao;
+		
+		public void setSpringDao(SpringDao springDao){
+			this.springDao=springDao;
+		}
+		
+		public void ok(){
+			springDao.ok();
+		}
+	}
+	
+	<bean name="SpringAction" class="com.bless.action.SpringAction">
+		<property name="springDao" ref="springDao"></property>
+	</bean>
+	
+	<bean name="springDao" class="com.bless.dao.impl.SpringDaoImpl"></bean>
+
+
+2.构造器注入
+
+	public class SpringAction {
+		private SpringDao springDao;
+		
+		public SpringAction(SpringDao springDao){
+			this.springDao=springDao;
+		}
+	}
+	
+	<bean name="SpringAction" class="com.bless.action.SpringAction">
+	<constructor-arg ref="springDao"></constructor-arg>
+	</bean>
+	
+	<bean name="springDao" class="com.bless.dao.impl.SpringDaoImpl"></bean>
+
+
+
 ##AOP
+
 ---
+
 + 为了分离业务逻辑和系统级服务（如审计和事务管理）
 + spring对bean对象的AOP处理有两种方式：
 	+ 有接口的类：JDKDynamicAopProxy

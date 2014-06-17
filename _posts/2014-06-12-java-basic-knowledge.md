@@ -49,3 +49,8 @@ A类调用B类的c方法，然后B类反过来调用A类的d方法。
 			callBack.solve();
 		}
 	}	
+
+####String StringBuilder StringBuffer
++ String不可变的，当改变String时会生成一个新的String
++ StringBuffer会对对象本身操作，一般比String快。是线程安全的，可用于多线程。
++ Stringbuilder非线程安全，比StringBuffer快，适合单线程。
